@@ -95,20 +95,20 @@ def captura_ejemplar(Titulo="",Autor="",Genero="",f_publi="",Fecha_Publicacion="
 def busqueda_titulo():
     print("")
     B_Titulo=input("Que Titulo desea buscar: ")
+    print("")
     encontrado = False
-    for lista in datos_tabla_libreria:
-        busqueda= lista[1]
-        if (B_Titulo == busqueda):
+    for Clave,Titulo,Autor,Genero,Año_de_publicacion,ISBN,Fecha_de_adquisicion in datos_tabla_libreria:
+        if (B_Titulo == Titulo):
             encontrado = True
             print("\tRegistro encontrado")
             print("-"*40)
-            print(f"Clave             : {lista[0]}")
-            print(f"Titulo            : {lista[1]}")  
-            print(f"Autor             : {lista[2]}")
-            print(f"Genero            : {lista[3]}")
-            print(f"Fecha Publicacion : {lista[4]}")
-            print(f"ISBN              : {lista[5]}")
-            print(f"Fecha Adquisicion : {lista[6]}")
+            print(f"Clave             : {Clave}")
+            print(f"Titulo            : {Titulo}")  
+            print(f"Autor             : {Autor}")
+            print(f"Genero            : {Genero}")
+            print(f"Fecha Publicacion : {Año_de_publicacion}")
+            print(f"ISBN              : {ISBN}")
+            print(f"Fecha Adquisicion : {Fecha_de_adquisicion}")
             print("")
             break
     if (encontrado == False):
@@ -116,21 +116,26 @@ def busqueda_titulo():
 
 def busqueda_ISBN():
     print("")
-    B_ISBN=int(input("Que ISBN desea buscar: "))
+    while True:
+        try:
+            B_ISBN=int(input("Que ISBN desea buscar: "))
+            break
+        except:
+            print("El ISBN INGRESADO NO ES VALIDO (SOLO DIGITOS)")
+    print("")
     encontrado = False
-    for lista in datos_tabla_libreria:
-        busqueda = lista[5]
-        if (B_ISBN == busqueda):
+    for Clave,Titulo,Autor,Genero,Año_de_publicacion,ISBN,Fecha_de_adquisicion in datos_tabla_libreria:
+        if (B_ISBN == ISBN):
             encontrado = True
             print("\tRegistro encontrado")
             print("-"*40)
-            print(f"Clave             : {lista[0]}")
-            print(f"Titulo            : {lista[1]}")  
-            print(f"Autor             : {lista[2]}")
-            print(f"Genero            : {lista[3]}")
-            print(f"Fecha Publicacion : {lista[4]}")
-            print(f"ISBN              : {lista[5]}")
-            print(f"Fecha Adquisicion : {lista[6]}")
+            print(f"Clave             : {Clave}")
+            print(f"Titulo            : {Titulo}")  
+            print(f"Autor             : {Autor}")
+            print(f"Genero            : {Genero}")
+            print(f"Fecha Publicacion : {Año_de_publicacion}")
+            print(f"ISBN              : {ISBN}")
+            print(f"Fecha Adquisicion : {Fecha_de_adquisicion}")
             print("")
             break
     if (encontrado == False):
