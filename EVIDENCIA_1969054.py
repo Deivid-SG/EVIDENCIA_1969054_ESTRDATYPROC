@@ -7,7 +7,7 @@ patron_ISBN="^[0-9]{10}$"
 patron_fecha="^([0-9]{2}[/][0-9]{2}[/][0-9]{4})|([0-9]{1}[/][0-9]{2}[/][0-9]{4})|([0-9]{2}[/][0-9]{1}[/][0-9]{4})|([0-9]{1}[/][0-9]{1}[/][0-9]{4})$"
 
 #libros={}
-#FORMATO DE libros={1:["Titulo","Autor","Genero","Año de publicacion",ISBN,"Fecha de adquisició"]}
+#FORMATO DE libros={1:["Titulo","Autor","Genero","Año de publicacion",ISBN,"Fecha de adquisicion"]}
 libros={1: ['EL PRINCIPITO', 'ANTOINE', 'NOVELA CORTA', '6/4/1943', 4235436343, '5/1/2023'],
         2: ['FRANKENSTEIN', 'MARY', 'CIENCIA FICCION', '1/1/1818', 5877347832, '15/12/2022'],
         3: ['CREPUSCULO', 'STEPHENIE', 'FANTASIA', '5/10/2005', 3758296343, '1/1/2015']}
@@ -180,7 +180,7 @@ while True:
                     print("*"*40)
                     print("*******   Menu Consulta Titulo   *******")
                     print("*"*40)
-                    print("1.-Por Titulo\n2.-Por Autor\n3.-Volver al Menu principal")
+                    print("1.-Por Titulo\n2.-Por ISBN\n3.-Volver al Menu principal")
                     print("*"*40)
                     try:
                         opcion_consulta_titulo=int(input("¿Que opcion desea?: "))
@@ -222,29 +222,33 @@ while True:
                     
                     if (opcion_reportes==1):
                         if(len(libros)==0):
+                            print("")
                             print("No hay registros.")
+                            print("")
                             continue
                         else:
                             datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
-                            columnas=("Identificador","Titulo","Autor","Genero","Año de publicacion","ISBN","Fecha de adquisició")
+                            columnas=("Identificador","Titulo","Autor","Genero","Año de publicacion","ISBN","Fecha de adquisicion")
                             print(tabulate(datos_tabla_libreria,headers=columnas,tablefmt="grid")) 
                         
                     if (opcion_reportes==2):
                         if(len(libros)==0):
+                            print("")
                             print("No hay registros.")
+                            print("")
                             continue
                         else:
                             buscar_autor=input("Dame el autor: ").upper()
                             datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
                             datos_tabla_autor=[]
 
-                            for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisició in datos_tabla_libreria:
+                            for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisicion in datos_tabla_libreria:
                                 if buscar_autor == Autor:
-                                    datos_tabla_autor.append([Autor,Titulo,Genero,Añodepublicacion,ISBN,Fechadeadquisició])
+                                    datos_tabla_autor.append([Autor,Titulo,Genero,Añodepublicacion,ISBN,Fechadeadquisicion])
                             if(len(datos_tabla_autor)==0):
                                 print("NO HAY AUTORES QUE COINCIDA CON EL NOMBRE")
                             else:
-                                columnas=("Autores","Titulo")
+                                columnas=("Autor","Titulo","Genero","Año de publicacion","ISBN","Fecha de adquisicion")
                                 print(tabulate(datos_tabla_autor,headers=columnas,tablefmt="grid")) 
                     if (opcion_reportes==3):
                         if(len(libros)==0):
@@ -255,13 +259,13 @@ while True:
                             datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
                             datos_tabla_genero=[]
 
-                            for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisició in datos_tabla_libreria:
+                            for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisicion in datos_tabla_libreria:
                                 if buscar_genero == Genero:
-                                    datos_tabla_genero.append([Genero,Titulo])
+                                    datos_tabla_genero.append([Genero,Titulo,Autor,Añodepublicacion,ISBN,Fechadeadquisicion])
                             if(len(datos_tabla_genero)==0):
                                 print("NO HAY GENEROS QUE COINCIDA CON EL NOMBRE")
                             else:
-                                columnas=("Genero","Titulo")
+                                columnas=("Genero","Titulo","Autor","Año de publicacion","ISBN","Fecha de adquisicion")
                                 print(tabulate(datos_tabla_genero,headers=columnas,tablefmt="grid")) 
                         
                     if (opcion_reportes==4):
@@ -274,13 +278,13 @@ while True:
                             datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
                             datos_tabla_Año_Publicacion=[]
 
-                            for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisició in datos_tabla_libreria:
+                            for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisicion in datos_tabla_libreria:
                                 if buscar_Año_Publicacion == Añodepublicacion:
-                                    datos_tabla_Año_Publicacion.append([Añodepublicacion,Titulo])
+                                    datos_tabla_Año_Publicacion.append([Añodepublicacion,Titulo,Autor,Genero,ISBN,Fechadeadquisicion])
                             if(len(datos_tabla_Año_Publicacion)==0):
                                 print("NO HAY AUTORES QUE COINCIDA CON EL NOMBRE")
                             else:
-                                columnas=("Año Publicacion","Titulo")
+                                columnas=("Año Publicacion","Titulo","Autor","Genero","ISBN","Fecha de adquisicion")
                                 print(tabulate(datos_tabla_Año_Publicacion,headers=columnas,tablefmt="grid")) 
                         
                     if (opcion_reportes==5):
