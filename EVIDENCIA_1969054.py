@@ -155,7 +155,6 @@ while True:
         print("El valor ingresado no es entero")
         continue
         
-        
     if (opcion_principal==1):
         clave=max(libros,default=0)+1
         captura_ejemplar()
@@ -252,7 +251,9 @@ while True:
                                 print(tabulate(datos_tabla_autor,headers=columnas,tablefmt="grid")) 
                     if (opcion_reportes==3):
                         if(len(libros)==0):
+                            print("")
                             print("No hay registros.")
+                            print("")
                             continue
                         else:
                             buscar_genero=input("Dame el Genero: ").upper()
@@ -269,9 +270,10 @@ while True:
                                 print(tabulate(datos_tabla_genero,headers=columnas,tablefmt="grid")) 
                         
                     if (opcion_reportes==4):
-                        #AÑO PUBLICACION
                         if(len(libros)==0):
+                            print("")
                             print("No hay registros.")
+                            print("")
                             continue
                         else:
                             buscar_Año_Publicacion=input("Dame el Año de Publicacion: ").upper()
