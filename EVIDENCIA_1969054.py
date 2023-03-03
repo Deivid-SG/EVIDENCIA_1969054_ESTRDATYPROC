@@ -7,7 +7,7 @@ patron_ISBN="^[0-9]{10}$"
 patron_fecha="^([0-9]{2}[/][0-9]{2}[/][0-9]{4})|([0-9]{1}[/][0-9]{2}[/][0-9]{4})|([0-9]{2}[/][0-9]{1}[/][0-9]{4})|([0-9]{1}[/][0-9]{1}[/][0-9]{4})$"
 
 #libros={}
-#libros={1:["Titulo","Autor","Genero","Año de publicacion",ISBN,"Fecha de adquisició"]}
+#FORMATO DE libros={1:["Titulo","Autor","Genero","Año de publicacion",ISBN,"Fecha de adquisició"]}
 libros={1: ['EL PRINCIPITO', 'ANTOINE', 'NOVELA CORTA', '6/4/1943', 4235436343, '5/1/2023'],
         2: ['FRANKENSTEIN', 'MARY', 'CIENCIA FICCION', '1/1/1818', 5877347832, '15/12/2022'],
         3: ['CREPUSCULO', 'STEPHENIE', 'FANTASIA', '5/10/2005', 3758296343, '1/1/2015']}
@@ -15,6 +15,7 @@ datos_tabla_libreria=[]
 
 #FUNCION PARA CAPTURAR DATOS
 def captura_ejemplar(Titulo="",Autor="",Genero="",f_publi="",Fecha_Publicacion="",isbn_="",ISBN="",f_adqui="",Fecha_Adquisicion=""):
+    print("")
     while True:
         if(Titulo.strip() == ""):
                 Titulo=input("Dame el titulo del libro: ")
@@ -92,6 +93,7 @@ def captura_ejemplar(Titulo="",Autor="",Genero="",f_publi="",Fecha_Publicacion="
 
 #FUNCIONES DE CONSULTA
 def busqueda_titulo():
+    print("")
     B_Titulo=input("Que Titulo desea buscar: ")
     encontrado = False
     for lista in datos_tabla_libreria:
@@ -107,11 +109,13 @@ def busqueda_titulo():
             print(f"Fecha Publicacion : {lista[4]}")
             print(f"ISBN              : {lista[5]}")
             print(f"Fecha Adquisicion : {lista[6]}")
+            print("")
             break
     if (encontrado == False):
         print("LO BUSCADO NO ESTA REGISTRADO")
 
 def busqueda_ISBN():
+    print("")
     B_ISBN=int(input("Que ISBN desea buscar: "))
     encontrado = False
     for lista in datos_tabla_libreria:
@@ -127,11 +131,13 @@ def busqueda_ISBN():
             print(f"Fecha Publicacion : {lista[4]}")
             print(f"ISBN              : {lista[5]}")
             print(f"Fecha Adquisicion : {lista[6]}")
+            print("")
             break
     if (encontrado == False):
         print("LO BUSCADO NO ESTA REGISTRADO")
                
 while True:
+    print("")
     print("*"*40)
     print("*******      Menu principal      *******")
     print("*"*40)
@@ -151,6 +157,7 @@ while True:
 
     if (opcion_principal==2):
         while True:
+            print("")
             print("*"*40)
             print("*****  Menu Consultas y Reportes   *****")
             print("*"*40)
@@ -164,6 +171,7 @@ while True:
                 
             if (opcion_consultas_Reportes==1):
                 while True:
+                    print("")
                     print("*"*40)
                     print("*******   Menu Consulta Titulo   *******")
                     print("*"*40)
@@ -194,6 +202,7 @@ while True:
                 
             if (opcion_consultas_Reportes==2):
                 while True:
+                    print("")
                     print("*"*40)
                     print("**********   Menu Reportes    **********")
                     print("*"*40)
