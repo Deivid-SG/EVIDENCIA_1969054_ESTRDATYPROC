@@ -6,9 +6,9 @@ patron_texto="^[A-Z ]{1,40}$"
 patron_ISBN="^[0-9]{10}$"
 patron_fecha="^([0-9]{2}[/][0-9]{2}[/][0-9]{4})|([0-9]{1}[/][0-9]{2}[/][0-9]{4})|([0-9]{2}[/][0-9]{1}[/][0-9]{4})|([0-9]{1}[/][0-9]{1}[/][0-9]{4})$"
 
-#libros={}
-#FORMATO DE libros={1:["Titulo","Autor","Genero","Año de publicacion",ISBN,"Fecha de adquisicion"]}
-libros={1: ['EL PRINCIPITO', 'ANTOINE', 'NOVELA CORTA', '6/4/1943', 4235436343, '5/1/2023'],
+#ejemplares={}
+#FORMATO DE ejemplares={1:["Titulo","Autor","Genero","Año de publicacion",ISBN,"Fecha de adquisicion"]}
+ejemplares={1: ['EL PRINCIPITO', 'ANTOINE', 'NOVELA CORTA', '6/4/1943', 4235436343, '5/1/2023'],
         2: ['FRANKENSTEIN', 'MARY', 'CIENCIA FICCION', '1/1/1818', 5877347832, '15/12/2022'],
         3: ['CREPUSCULO', 'STEPHENIE', 'FANTASIA', '5/10/2005', 3758296343, '1/1/2015']}
 datos_tabla_libreria=[]
@@ -88,10 +88,10 @@ def captura_ejemplar(Titulo="",Autor="",Genero="",f_publi="",Fecha_Publicacion="
                     f_adqui=""
                     Fecha_Adquisicion=""
                     continue
-        libros[clave]=[Titulo,Autor,Genero,Fecha_Publicacion.strftime('%d/%m/%Y'),ISBN,Fecha_Adquisicion.strftime('%d/%m/%Y')]
+        ejemplares[clave]=[Titulo,Autor,Genero,Fecha_Publicacion.strftime('%d/%m/%Y'),ISBN,Fecha_Adquisicion.strftime('%d/%m/%Y')]
         break
 
-#FUNCIONES DE CONSULTA
+#FUNCIONES DE CONSULTA DE TITULO E ISBN
 def busqueda_titulo():
     print("")
     B_Titulo=input("Que Titulo desea buscar: ")
@@ -156,7 +156,7 @@ while True:
         continue
         
     if (opcion_principal==1):
-        clave=max(libros,default=0)+1
+        clave=max(ejemplares,default=0)+1
         captura_ejemplar()
 
     if (opcion_principal==2):
@@ -188,12 +188,12 @@ while True:
                         continue
                      
                     if (opcion_consulta_titulo==1):
-                        datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
+                        datos_tabla_libreria=[[clave] + datos for clave,datos in ejemplares.items()]
                         busqueda_titulo()  
                         
 
                     if (opcion_consulta_titulo==2):
-                        datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
+                        datos_tabla_libreria=[[clave] + datos for clave,datos in ejemplares.items()]
                         busqueda_ISBN()
                     
                     if (opcion_consulta_titulo==3):
@@ -220,25 +220,25 @@ while True:
                         continue
                     
                     if (opcion_reportes==1):
-                        if(len(libros)==0):
+                        if(len(ejemplares)==0):
                             print("")
                             print("No hay registros.")
                             print("")
                             continue
                         else:
-                            datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
+                            datos_tabla_libreria=[[clave] + datos for clave,datos in ejemplares.items()]
                             columnas=("Identificador","Titulo","Autor","Genero","Año de publicacion","ISBN","Fecha de adquisicion")
                             print(tabulate(datos_tabla_libreria,headers=columnas,tablefmt="grid")) 
                         
                     if (opcion_reportes==2):
-                        if(len(libros)==0):
+                        if(len(ejemplares)==0):
                             print("")
                             print("No hay registros.")
                             print("")
                             continue
                         else:
                             buscar_autor=input("Dame el autor: ").upper()
-                            datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
+                            datos_tabla_libreria=[[clave] + datos for clave,datos in ejemplares.items()]
                             datos_tabla_autor=[]
 
                             for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisicion in datos_tabla_libreria:
@@ -250,14 +250,14 @@ while True:
                                 columnas=("Autor","Titulo","Genero","Año de publicacion","ISBN","Fecha de adquisicion")
                                 print(tabulate(datos_tabla_autor,headers=columnas,tablefmt="grid")) 
                     if (opcion_reportes==3):
-                        if(len(libros)==0):
+                        if(len(ejemplares)==0):
                             print("")
                             print("No hay registros.")
                             print("")
                             continue
                         else:
                             buscar_genero=input("Dame el Genero: ").upper()
-                            datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
+                            datos_tabla_libreria=[[clave] + datos for clave,datos in ejemplares.items()]
                             datos_tabla_genero=[]
 
                             for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisicion in datos_tabla_libreria:
@@ -270,14 +270,14 @@ while True:
                                 print(tabulate(datos_tabla_genero,headers=columnas,tablefmt="grid")) 
                         
                     if (opcion_reportes==4):
-                        if(len(libros)==0):
+                        if(len(ejemplares)==0):
                             print("")
                             print("No hay registros.")
                             print("")
                             continue
                         else:
                             buscar_Año_Publicacion=input("Dame el Año de Publicacion: ").upper()
-                            datos_tabla_libreria=[[clave] + datos for clave,datos in libros.items()]
+                            datos_tabla_libreria=[[clave] + datos for clave,datos in ejemplares.items()]
                             datos_tabla_Año_Publicacion=[]
 
                             for Identificador,Titulo,Autor,Genero,Añodepublicacion,ISBN,Fechadeadquisicion in datos_tabla_libreria:
@@ -297,7 +297,6 @@ while True:
                         print("Opcion fuera del rango.")
                         continue
                
-            
             if (opcion_consultas_Reportes==3):
                 break   
             if (opcion_consultas_Reportes>3 or opcion_consultas_Reportes<1):
